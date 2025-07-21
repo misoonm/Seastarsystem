@@ -1,0 +1,586 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A clean, modern font */
+    margin: 0;
+    padding: 0;
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right;
+    background-color: #f0f2f5; /* Light grey background */
+    color: #333;
+}
+
+/* Dashboard Wrapper - Flexbox for layout */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 280px; /* Fixed width as seen in the design */
+    background-color: #2c3e50; /* Dark blue/grey */
+    color: #ecf0f1; /* Light text color */
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease; /* For collapsing sidebar */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar-header .logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav .nav-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-nav .nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+.sidebar-nav .nav-item a:hover,
+.sidebar-nav .nav-item.active > a {
+    background-color: #34495e; /* Slightly lighter dark blue */
+    color: #ffffff;
+}
+
+.sidebar-nav .nav-item a i {
+    margin-left: 10px; /* Space between icon and text */
+    font-size: 1.1em;
+}
+
+.sidebar-nav .nav-item.has-submenu a .submenu-icon {
+    margin-right: auto; /* Push icon to the left */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav .nav-item.has-submenu.open > a .submenu-icon {
+    transform: rotate(-90deg); /* Rotate for open state */
+}
+
+.sidebar-nav .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #3f556d; /* Darker background for submenu */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.sidebar-nav .submenu.open {
+    max-height: 500px; /* Adjust as needed to fit all items */
+}
+
+.sidebar-nav .submenu li a {
+    padding: 10px 20px 10px 40px; /* Indent submenu items */
+    font-size: 0.95em;
+    color: #bdc3c7; /* Lighter text for submenu */
+}
+
+.sidebar-nav .submenu li a:hover {
+    background-color: #4c647b;
+    color: #ffffff;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f2f5;
+}
+
+/* Header Bar Styling */
+.header-bar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 20px;
+    color: #555;
+}
+
+.breadcrumb {
+    font-size: 1.1em;
+    color: #777;
+}
+
+.breadcrumb span {
+    margin: 0 5px;
+}
+
+.breadcrumb i {
+    color: #3498db;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.icon-group {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.icon-item {
+    position: relative;
+    font-size: 1.2em;
+    margin: 0 10px;
+    color: #555;
+    cursor: pointer;
+}
+
+.icon-item .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #e74c3c; /* Red badge */
+    color: white;
+    font-size: 0.7em;
+    padding: 3px 6px;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.user-profile .user-name {
+    margin-left: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.user-profile .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-profile i {
+    font-size: 0.8em;
+    color: #555;
+    margin-left: 5px;
+}
+
+.search-box {
+    position: relative;
+    margin-right: 20px;
+}
+
+.search-box input {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    padding-right: 35px; /* Space for icon */
+    border-radius: 20px;
+    font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #3498db;
+}
+
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+
+/* Dashboard Content Area */
+.dashboard-content {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+/* Card Grid for top section */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 10px; /* Colored border on the right */
+    background-color: currentColor; /* Inherits color from card */
+}
+
+.card.purple { background-color: #9b59b6; } /* Example color */
+.card.blue { background-color: #3498db; }
+.card.light-purple { background-color: #be8ad3; } /* A lighter purple for contrast */
+.card.teal { background-color: #1abc9c; }
+
+.card .card-number {
+    font-size: 2.8em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.card .card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.card .card-subtitle {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Chart Section */
+.chart-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.chart-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.chart-actions i {
+    margin-left: 10px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.chart-actions i:hover {
+    color: #555;
+}
+
+.chart-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.placeholder-chart {
+    max-width: 100%;
+    height: auto;
+    background-color: #ecf0f1; /* Light grey placeholder */
+    border: 1px dashed #ccc;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.chart-summary {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.chart-summary span {
+    display: block;
+    text-align: center;
+}
+.chart-summary span:nth-child(even) { /* For the labels like "إجمالي الإيراد" */
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Events and Calendar Section */
+.events-calendar-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.events-card,
+.calendar-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.events-header,
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.events-header h3,
+.calendar-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.btn {
+    background-color: #8e44ad; /* Purple button color */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.btn:hover {
+    background-color: #9b59b6;
+}
+
+.btn i {
+    margin-left: 5px;
+}
+
+.events-list {
+    padding: 20px;
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-circle {
+    width: 10px;
+    height: 10px;
+    background-color: #3498db; /* Blue dot for event */
+    border-radius: 50%;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.event-title {
+    flex-grow: 1;
+}
+
+.event-date {
+    font-size: 0.85em;
+    color: #888;
+}
+
+/* Calendar Styling */
+.calendar-controls {
+    display: flex;
+    align-items: center;
+}
+
+.btn-calendar-nav {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 5px 10px;
+    margin: 0 3px;
+    border-radius: 5px;
+}
+
+.btn-calendar-nav:hover {
+    background-color: #eee;
+}
+
+.btn-today {
+    background-color: #2ecc71; /* Green for Today button */
+    color: white;
+    margin: 0 10px;
+}
+.btn-today:hover {
+    background-color: #27ae60;
+}
+
+.current-month {
+    font-weight: bold;
+    margin: 0 10px;
+    color: #333;
+}
+
+.btn-calendar-view {
+    background-color: transparent;
+    border: none;
+    color: #555;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.btn-calendar-view.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-calendar-view:hover:not(.active) {
+    background-color: #eee;
+}
+
+.calendar-body {
+    padding: 20px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 days a week */
+    gap: 1px; /* Small gap between cells */
+    background-color: #ddd; /* Border effect for grid cells */
+    border: 1px solid #ddd;
+}
+
+.calendar-day-header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ddd;
+}
+
+.calendar-day {
+    background-color: #ffffff;
+    min-height: 80px; /* Adjust as needed */
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9em;
+    color: #555;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-day:hover {
+    background-color: #f5f5f5;
+}
+
+.calendar-day.active-day {
+    background-color: #eaf2f8; /* Light blue for active day */
+    border: 1px solid #3498db;
+    z-index: 1; /* Bring active day to front for border */
+}
+
+/* For previous/next month days */
+.calendar-day:not([data-month="current"]) {
+    color: #bbb;
+}
+
+/* Specific styling for days with events - as seen in the design */
+.calendar-day .event-indicator {
+    background-color: #1abc9c; /* Example event color */
+    color: white;
+    font-size: 0.75em;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-top: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.calendar-day .event-indicator.blue-event {
+    background-color: #3498db;
+}
+
+.calendar-day .event-indicator.purple-event {
+    background-color: #9b59b6;
+}
+
+/* Example: Add specific classes for events as seen in image 4 */
+.calendar-day.has-event {
+    background-color: #eaf2f8;
+}
+.calendar-day.has-event.blue {
+    background-color: #e6f7ff; /* Lighter blue */
+}
+.calendar-day.has-event.purple {
+    background-color: #f7e6ff; /* Lighter purple */
+}
+
